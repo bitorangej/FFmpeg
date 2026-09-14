@@ -56,3 +56,6 @@
 /libavfilter/vulkan/*.c
 /.*/
 !/.forgejo/
+/build-debug/
+/build-release/
+/data/

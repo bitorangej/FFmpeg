@@ -1,0 +1,12 @@
+# clangd 编辑器无关配置：指定编译数据库所在目录。
+# 相对路径按本文件所在目录（源码树根）解析。数据库由 scripts/bear-build.sh 生成。
+#
+# 钉在 build-debug 而非 build-release，原因有两点：
+#   1. debug 配置了 --assert-level=2，av_assert1/av_assert2 的函数体是活代码，
+#      不会被预处理成空，索引和跳转更完整；
+#   2. config.h、config_components.h 等生成头文件位于该目录，clangd 靠数据库里的
+#      -I 找到它们，因此该目录必须先 configure 过。
+#
+# 需要按 release 配置索引时把下面的目录改成 build-release。
+CompileFlags:
+  CompilationDatabase: build-debug
